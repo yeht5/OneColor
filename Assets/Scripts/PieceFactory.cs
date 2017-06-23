@@ -64,7 +64,7 @@ public class PieceFactory : MonoBehaviour
 			}
 		}
 	}
-
+		
 	//利用协程实现延时变色
 	private IEnumerator delay(List<GameObject> new_list, int id, Color old_color, Color new_color)
 	{
