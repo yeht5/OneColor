@@ -39,34 +39,29 @@ public class PieceFactory : MonoBehaviour
 
 	void Update () {
 		//实现cube的旋转
-		if (Input.GetMouseButtonDown(0))  
-		{  
-			StartPosition = Input.mousePosition;  
-			previousPosition = Input.mousePosition;  
-		}  
-		if (Input.GetMouseButton(0))  
-		{  
-			offset = Input.mousePosition - previousPosition;  
-			previousPosition = Input.mousePosition;  
-			cube.transform.Rotate (Vector3.Cross (offset, Vector3.forward).normalized, offset.magnitude, Space.World);
-		}  
-		if (Input.GetMouseButtonUp(0))  
-		{  
-			finalOffset = Input.mousePosition - StartPosition;  
-			isSlide = true;  
-			angle = finalOffset.magnitude; 
-		}  
-		if (isSlide)  
-		{  
-			cube.transform.Rotate(Vector3.Cross(finalOffset, Vector3.forward).normalized, angle * 2 * Time.deltaTime, Space.World);
-			if (angle > 0)  
-			{  
-				angle -= 5;  
+		if (cube != null) {
+			if (Input.GetMouseButtonDown (0)) {  
+				StartPosition = Input.mousePosition;  
+				previousPosition = Input.mousePosition;  
 			}  
-			else  
-			{  
-				angle = 0;  
+			if (Input.GetMouseButton (0)) {  
+				offset = Input.mousePosition - previousPosition;  
+				previousPosition = Input.mousePosition;  
+				cube.transform.Rotate (Vector3.Cross (offset, Vector3.forward).normalized, offset.magnitude, Space.World);
 			}  
+			if (Input.GetMouseButtonUp (0)) {  
+				finalOffset = Input.mousePosition - StartPosition;  
+				isSlide = true;  
+				angle = finalOffset.magnitude; 
+			}  
+			if (isSlide) {  
+				cube.transform.Rotate (Vector3.Cross (finalOffset, Vector3.forward).normalized, angle * 2 * Time.deltaTime, Space.World);
+				if (angle > 0) {  
+					angle -= 5;  
+				} else {  
+					angle = 0;  
+				}  
+			}
 		}
 	}
 
