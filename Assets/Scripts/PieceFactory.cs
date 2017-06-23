@@ -11,6 +11,10 @@ public class PieceFactory : MonoBehaviour
 	private static List<GameObject> pieceList_back = new List<GameObject>();
 	private static List<GameObject> pieceList_top = new List<GameObject>();
 	private static List<GameObject> pieceList_bottom = new List<GameObject>();
+	public Color color_1 = new Color(0.1176f, 0.1843f, 0.1215f);
+	public Color color_2 = new Color(0.8627f, 0.2039f, 0.2823f);
+	public Color color_3 = new Color(0.8509f, 0.6039f, 0.3019f);
+	public Color color_4 = new Color(0.8196f, 0.6941f, 0.5333f);
 	private int count = 0;
     private int size = 0; //一行纸片的数量
 	private GameObject cube;
@@ -77,16 +81,16 @@ public class PieceFactory : MonoBehaviour
 		switch (color[i*size+j])
 		{
 		case 0:
-			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = Color.red;
+			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = color_1;
 			break;
 		case 1:
-			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = Color.green;
+			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = color_2;
 			break;
 		case 2:
-			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = Color.blue;
+			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = color_3;
 			break;
 		case 3:
-			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = Color.yellow;
+			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = color_4;
 			break;
 		}
 	}
