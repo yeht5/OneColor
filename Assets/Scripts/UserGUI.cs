@@ -35,6 +35,10 @@ public class UserGUI : MonoBehaviour {
         {
 			action.selectColor(color_4);
             colortext.text = "Color : Yellow";
-        }
+		}
+		if (GUI.Button(new Rect(440, Screen.height - 60, 80, 40), "Reset"))
+		{
+			colortext.text = "Reset";
+		}
     }
 }

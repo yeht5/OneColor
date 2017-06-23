@@ -7,6 +7,7 @@ using SimpleJson;
 public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 {
     private static SceneController _instance;
+
     public bool is_slt_color = false; //是否选择颜色
     public Color slt_color; //选择的颜色
     public int used_step = 0; //已用的次数
@@ -14,7 +15,6 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 
     public Text maintext; //中间显示
     public Text steptext; //显示次数
-
     void Awake()
     {
         Director director = Director.getInstance();
@@ -41,6 +41,15 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
         fileManager.loadLevelJson(file);
     }
 
+	void OnGUI() {
+		if (GUI.Button(new Rect(440, Screen.height - 60, 80, 40), "Reset"))
+		{
+			Debug.Log ("reset");
+			PieceFactory pf = Singleton<PieceFactory>.Instance;
+			pf.reset();
+			used_step = 0;
+		}
+	}
     //选择改变颜色的片
     public void selectPiece(Vector3 pos)
     {

@@ -11,6 +11,7 @@ public class PieceFactory : MonoBehaviour
 	private static List<GameObject> pieceList_back = new List<GameObject>();
 	private static List<GameObject> pieceList_top = new List<GameObject>();
 	private static List<GameObject> pieceList_bottom = new List<GameObject>();
+	private static List<int> colorList = new List<int> ();
 	public Color color_1 = new Color(0.1176f, 0.1843f, 0.1215f);
 	public Color color_2 = new Color(0.8627f, 0.2039f, 0.2823f);
 	public Color color_3 = new Color(0.8509f, 0.6039f, 0.3019f);
@@ -76,21 +77,36 @@ public class PieceFactory : MonoBehaviour
 		switch (color[i*size+j])
 		{
 		case 0:
-			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = color_1;
+			target_list[i*size+j].GetComponent<Renderer>().material.color = color_1;
 			break;
 		case 1:
-			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = color_2;
+			target_list[i*size+j].GetComponent<Renderer>().material.color = color_2;
 			break;
 		case 2:
-			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = color_3;
+			target_list[i*size+j].GetComponent<Renderer>().material.color = color_3;
 			break;
 		case 3:
-			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = color_4;
+			target_list[i*size+j].GetComponent<Renderer>().material.color = color_4;
 			break;
+		}
+	}
+
+	public void reset() {
+		Debug.Log (size);
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				paint(pieceList, colorList, i, j);
+				paint(pieceList_top, colorList, i, j);
+				paint(pieceList_bottom, colorList, i, j);
+				paint(pieceList_back, colorList, i, j);
+				paint(pieceList_left, colorList, i, j);
+				paint(pieceList_right, colorList, i, j);
+			}
 		}
 	}
     public void LoadSrc(int s, List<int> color)
     {
+		colorList = color;
         size = s;
         float start = (float)size / -2.0f;
 		Vector3 Cube_pos = new Vector3(start + 1.0f * Mathf.Ceil(size/2), start + 1.0f * Mathf.Ceil(size/2), Mathf.Ceil(size/2));
