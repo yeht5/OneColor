@@ -83,7 +83,7 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
         for (int i = 0; i < color.Length; i++)
         {
             colorlist.Add(color[i] - 48);
-            Debug.Log(color[i] - 48);
+            //Debug.Log(color[i] - 48);
         }
         PieceFactory pf = Singleton<PieceFactory>.Instance;
         pf.LoadSrc(size, colorlist);

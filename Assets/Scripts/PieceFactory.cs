@@ -2,98 +2,263 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PieceFactory : MonoBehaviour
 {
     private static List<GameObject> pieceList = new List<GameObject>();
+	private static List<GameObject> pieceList_left = new List<GameObject>();
+	private static List<GameObject> pieceList_right = new List<GameObject>();
+	private static List<GameObject> pieceList_back = new List<GameObject>();
+	private static List<GameObject> pieceList_top = new List<GameObject>();
+	private static List<GameObject> pieceList_bottom = new List<GameObject>();
+	private int count = 0;
     private int size = 0; //一行纸片的数量
+	private GameObject cube;
+	Vector3 StartPosition;  
+	Vector3 previousPosition;  
+	Vector3 offset;  
+	Vector3 finalOffset;  
+	Vector3 eulerAngle;  
 
+	bool isSlide;  
+	float angle;  
+
+	public float scale = 1;  
+
+	RaycastHit hit;  
+
+	/// <summary>
+	/// Start this instance.
+	/// </summary>
 	void Start () {
 	}
 
 	void Update () {
+		//实现cube的旋转
+		if (Input.GetMouseButtonDown(0))  
+		{  
+			StartPosition = Input.mousePosition;  
+			previousPosition = Input.mousePosition;  
+		}  
+		if (Input.GetMouseButton(0))  
+		{  
+			offset = Input.mousePosition - previousPosition;  
+			previousPosition = Input.mousePosition;  
+			cube.transform.Rotate (Vector3.Cross (offset, Vector3.forward).normalized, offset.magnitude, Space.World);
+		}  
+		if (Input.GetMouseButtonUp(0))  
+		{  
+			finalOffset = Input.mousePosition - StartPosition;  
+			isSlide = true;  
+			angle = finalOffset.magnitude; 
+		}  
+		if (isSlide)  
+		{  
+			cube.transform.Rotate(Vector3.Cross(finalOffset, Vector3.forward).normalized, angle * 2 * Time.deltaTime, Space.World);
+			if (angle > 0)  
+			{  
+				angle -= 5;  
+			}  
+			else  
+			{  
+				angle = 0;  
+			}  
+		}
 	}
 
+	//利用协程实现延时变色
+	private IEnumerator delay(List<GameObject> new_list, int id, Color old_color, Color new_color)
+	{
+		yield return new WaitForSeconds(0.5f/(2*(count+1)));
+		GetSameColorPiece(new_list, id, old_color, new_color);
+	}
+
+	private void paint(List<GameObject> target_list, List<int> color, int i, int j) {
+		switch (color[i*size+j])
+		{
+		case 0:
+			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = Color.red;
+			break;
+		case 1:
+			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = Color.green;
+			break;
+		case 2:
+			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = Color.blue;
+			break;
+		case 3:
+			target_list[target_list.Count - 1].GetComponent<Renderer>().material.color = Color.yellow;
+			break;
+		}
+	}
     public void LoadSrc(int s, List<int> color)
     {
         size = s;
         float start = (float)size / -2.0f;
-
-        for (int i = 0; i < size; i++)
+		Vector3 Cube_pos = new Vector3(start + 1.0f * Mathf.Ceil(size/2), start + 1.0f * Mathf.Ceil(size/2), Mathf.Ceil(size/2));
+		cube = Instantiate (Resources.Load ("Prefabs/Cube"), Cube_pos, Quaternion.identity) as GameObject;
+		for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
             {
                 Vector3 pos = new Vector3(start + 1.0f * j, start + 1.0f * i, 0);
                 pieceList.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.identity) as GameObject);
-                switch (color[i*size+j])
-                {
-                    case 0:
-                        pieceList[pieceList.Count - 1].GetComponent<Renderer>().material.color = Color.red;
-                        break;
-                    case 1:
-                        pieceList[pieceList.Count - 1].GetComponent<Renderer>().material.color = Color.green;
-                        break;
-                    case 2:
-                        pieceList[pieceList.Count - 1].GetComponent<Renderer>().material.color = Color.blue;
-                        break;
-                    case 3:
-                        pieceList[pieceList.Count - 1].GetComponent<Renderer>().material.color = Color.yellow;
-                        break;
-                }
+				paint (pieceList, color, i, j);
             }
         }
+		//back
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				Vector3 pos = new Vector3(start + 1.0f * j, start + 1.0f * i, 1.0f*s);
+				pieceList_back.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.identity) as GameObject);
+				paint (pieceList_back, color, i, j);
+			}
+		}
+
+		//leftside
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				Vector3 pos = new Vector3(start - 0.5f, start + 1.0f * i, start + 1.0f * j + 0.5f*(s+1));
+				pieceList_right.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(0, 90, 0)) as GameObject);
+				paint (pieceList_right, color, i, j);
+			}
+		}
+		//rightside
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				Vector3 pos = new Vector3(start - 0.5f + 1.0f*s, start + 1.0f * i, start + 1.0f * j + 0.5f*(s+1));
+				pieceList_left.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(0, 90, 0)) as GameObject);
+				paint (pieceList_left, color, i, j);
+			}
+		}
+		//bottom
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				Vector3 pos = new Vector3(start + 1.0f * j, start - 0.5f, 1.0f*i + 0.5f);
+				pieceList_bottom.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(90, 0, 0)) as GameObject);
+				paint (pieceList_bottom, color, i, j);
+			}
+		}
+		//top
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				Vector3 pos = new Vector3(start + 1.0f * j, start - 0.5f + 1.0f*s, 1.0f*i + 0.5f);
+				pieceList_top.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(90, 0, 0)) as GameObject);
+				paint (pieceList_top, color, i, j);
+			}
+		}
+		//将cube设为piecelist的父对象实现旋转
+		for (int i = 0; i < pieceList.Count; i++) {
+			pieceList[i].transform.parent = cube.transform;
+			pieceList_right[i].transform.parent = cube.transform;
+			pieceList_left[i].transform.parent = cube.transform;
+			pieceList_back[i].transform.parent = cube.transform;
+			pieceList_bottom[i].transform.parent = cube.transform;
+			pieceList_top[i].transform.parent = cube.transform;
+		}
     }
 
+	//判断GameObject所在列表并返回该列表
+	public List<GameObject> GetList(GameObject obj) {
+		for (int i = 0; i < pieceList.Count; i++)
+		{
+			if (obj.GetInstanceID() == pieceList[i].GetInstanceID())
+			{
+				Debug.Log("zhengmian");
+				return pieceList;
+			}
+			if (obj.GetInstanceID() == pieceList_left[i].GetInstanceID())
+			{
+				Debug.Log("left");
+				return pieceList_left;
+			}
+			if (obj.GetInstanceID() == pieceList_right[i].GetInstanceID())
+			{
+				Debug.Log("right");
+				return pieceList_right;
+			}
+			if (obj.GetInstanceID() == pieceList_top[i].GetInstanceID())
+			{
+				Debug.Log("top");
+				return pieceList_top;
+			}
+			if (obj.GetInstanceID() == pieceList_bottom[i].GetInstanceID())
+			{
+				Debug.Log("bottom");
+				return pieceList_bottom;
+			}
+			if (obj.GetInstanceID() == pieceList_back[i].GetInstanceID())
+			{
+				Debug.Log("back");
+				return pieceList_back;
+			}
+		}
+		return pieceList;
+	}
     //改变与选中片颜色相同且互相连接的片的颜色
     public int SetPieceColor(GameObject slt_piece, Color slt_color)
     {
+		List<GameObject> new_list = GetList (slt_piece);
         Color old_color = slt_piece.GetComponent<Renderer>().material.color;
         if (old_color == slt_color) return 0;
         int piece_id = 0;
         for (int i = 0; i < pieceList.Count; i++)
         {
-            if (slt_piece.GetInstanceID() == pieceList[i].GetInstanceID())
+			if (slt_piece.GetInstanceID() == new_list[i].GetInstanceID())
             {
                 piece_id = i;
             }
         }
-        pieceList[piece_id].GetComponent<Renderer>().material.color = slt_color;
-        GetSameColorPiece(piece_id, old_color, slt_color);
+		new_list[piece_id].GetComponent<Renderer>().material.color = slt_color;
+		count = 0;
+		GetSameColorPiece(new_list, piece_id, old_color, slt_color);
         return 1;
     }
 
     //改变一个片周围颜色相同的片的颜色
-    void GetSameColorPiece(int id, Color old_color, Color new_color)
+	void GetSameColorPiece(List<GameObject> new_list, int id, Color old_color, Color new_color)
     {
         List<int> id_list = new List<int>();
+		count++;
         if ((id % size) > 0)
         {
-            if (pieceList[id - 1].GetComponent<Renderer>().material.color == old_color)
+			if (new_list[id - 1].GetComponent<Renderer>().material.color == old_color)
                 id_list.Add(id - 1);
         }
         if ((id % size + 1) < size)
         {
-            if (pieceList[id + 1].GetComponent<Renderer>().material.color == old_color)
+			if (new_list[id + 1].GetComponent<Renderer>().material.color == old_color)
                 id_list.Add(id + 1);
         }
         if ((id / size) > 0)
         {
-            if (pieceList[id - size].GetComponent<Renderer>().material.color == old_color)
+			if (new_list[id - size].GetComponent<Renderer>().material.color == old_color)
                 id_list.Add(id - size);
         }
         if ((id / size + 1) < size)
         {
-            if (pieceList[id + size].GetComponent<Renderer>().material.color == old_color)
+			if (new_list[id + size].GetComponent<Renderer>().material.color == old_color)
                 id_list.Add(id + size);
         }
         if (id_list.Count > 0)
         {
             for (int i = 0; i < id_list.Count; i++)
             {
-                pieceList[id_list[i]].GetComponent<Renderer>().material.color = new_color;
+				new_list[id_list[i]].GetComponent<Renderer>().material.color = new_color;
             }
             for (int i = 0; i < id_list.Count; i++)
             {
-                GetSameColorPiece(id_list[i], old_color, new_color);
+				StartCoroutine(delay(new_list ,id_list[i], old_color, new_color));
+				Debug.Log(count);
             }
         }
         else
@@ -112,6 +277,22 @@ public class PieceFactory : MonoBehaviour
             {
                 return false;
             }
+			if (pieceList_left[i].GetComponent<Renderer>().material.color != color)
+			{
+				return false;
+			}
+			if (pieceList_right[i].GetComponent<Renderer>().material.color != color)
+			{
+				return false;
+			}
+			if (pieceList_top[i].GetComponent<Renderer>().material.color != color)
+			{
+				return false;
+			}
+			if (pieceList_bottom[i].GetComponent<Renderer>().material.color != color)
+			{
+				return false;
+			}
         }
         return true;
     }
