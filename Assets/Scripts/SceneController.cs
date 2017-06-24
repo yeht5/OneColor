@@ -45,7 +45,7 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 	}
 
 	void OnGUI() {
-		if (GUI.Button(new Rect(Screen.width - 200, Screen.height - 60, 70, 40), "Reset"))
+		if (GUI.Button(new Rect(Screen.width - 280, Screen.height - 60, 60, 40), "Reset"))
 		{
 			Debug.Log ("reset");
 			PieceFactory pf = Singleton<PieceFactory>.Instance;
@@ -67,7 +67,7 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 			if (pf.isOneColor())
 			{
 				if (used_step > max_step)
-					maintext.text = "OK!";
+					maintext.text = "Pass But Overstep";
 				else
 					maintext.text = "Perfect!";
 			}
