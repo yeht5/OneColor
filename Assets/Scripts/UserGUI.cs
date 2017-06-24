@@ -16,25 +16,25 @@ public class UserGUI : MonoBehaviour {
 	}
     void OnGUI()
     {
-        if (GUI.Button(new Rect(40, Screen.height - 60, 80, 40), "Red"))
+        if (GUI.Button(new Rect(40, Screen.height - 60, 80, 40), "Green"))
         {
             action.selectColor(color_1);
-            colortext.text = "Color : Red";
-        }
-        if (GUI.Button(new Rect(140, Screen.height - 60, 80, 40), "Green"))
-        {
-			action.selectColor(color_2);
             colortext.text = "Color : Green";
         }
-        if (GUI.Button(new Rect(240, Screen.height - 60, 80, 40), "Blue"))
+        if (GUI.Button(new Rect(140, Screen.height - 60, 80, 40), "Red"))
+        {
+			action.selectColor(color_2);
+            colortext.text = "Color : Red";
+        }
+        if (GUI.Button(new Rect(240, Screen.height - 60, 80, 40), "Yellow"))
         {
 			action.selectColor(color_3);
-            colortext.text = "Color : Blue";
+            colortext.text = "Color : Yellow";
         }
-        if (GUI.Button(new Rect(340, Screen.height - 60, 80, 40), "Yellow"))
+        if (GUI.Button(new Rect(340, Screen.height - 60, 80, 40), "White"))
         {
 			action.selectColor(color_4);
-            colortext.text = "Color : Yellow";
+            colortext.text = "Color : White";
 		}
     }
 }

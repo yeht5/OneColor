@@ -74,7 +74,7 @@ public class PieceFactory : MonoBehaviour
 	//利用协程实现延时变色
 	private IEnumerator delay(List<GameObject> new_list, int id, Color old_color, Color new_color)
 	{
-		yield return new WaitForSeconds(0.5f/(2*(count+1)));
+		yield return new WaitForSeconds(0.8f/(2*(count+1)));
 		GetSameColorPiece(new_list, id, old_color, new_color);
 	}
 
@@ -147,8 +147,8 @@ public class PieceFactory : MonoBehaviour
 			for (int j = 0; j < size; j++)
 			{
 				Vector3 pos = new Vector3(start - 0.5f, start + 1.0f * i, start + 1.0f * j + 0.5f*(s+1));
-				pieceList_right.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(0, 90, 0)) as GameObject);
-				paint (pieceList_right, color_left, i, j);
+				pieceList_left.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(0, 90, 0)) as GameObject);
+				paint (pieceList_left, color_left, i, j);
 			}
 		}
 		//rightside
@@ -157,8 +157,8 @@ public class PieceFactory : MonoBehaviour
 			for (int j = 0; j < size; j++)
 			{
 				Vector3 pos = new Vector3(start - 0.5f + 1.0f*s, start + 1.0f * i, start + 1.0f * j + 0.5f*(s+1));
-				pieceList_left.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(0, 90, 0)) as GameObject);
-				paint (pieceList_left, color_right, i, j);
+				pieceList_right.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(0, 90, 0)) as GameObject);
+				paint (pieceList_right, color_right, i, j);
 			}
 		}
 		//bottom
