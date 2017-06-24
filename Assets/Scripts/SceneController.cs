@@ -103,10 +103,10 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 		{
 			colorlist.Add(color[i] - 48);
 			color_left.Add(colorleft[i] - 48);
-			color_right.Add(colorleft[i] - 48);
-			color_top.Add(colorleft[i] - 48);
-			color_bottom.Add(colorleft[i] - 48);
-			color_back.Add(colorleft[i] - 48);
+			color_right.Add(colorright[i] - 48);
+			color_top.Add(colortop[i] - 48);
+			color_bottom.Add(colorbottom[i] - 48);
+			color_back.Add(colorback[i] - 48);
 			//Debug.Log(color[i] - 48);
 		}
 		PieceFactory pf = Singleton<PieceFactory>.Instance;
