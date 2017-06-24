@@ -2,14 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Data/level1.json">
     <Files>
+      <File FileName="Assets/Scripts/SceneController.cs" Line="89" Column="35" />
+      <File FileName="Assets/Scripts/PieceFactory.cs" Line="107" Column="24" />
       <File FileName="Assets/Data/level1.json" Line="5" Column="2" />
-      <File FileName="Assets/Scripts/PieceFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/FileManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FileManager.cs" Line="40" Column="55" />
       <File FileName="Assets/Scripts/Singleton.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UserGUI.cs" Line="15" Column="75" />
-      <File FileName="Assets/Scripts/SceneController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Rotate.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UserGUI.cs" Line="38" Column="4" />
       <File FileName="Assets/Scripts/Interface.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CameraControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Director.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

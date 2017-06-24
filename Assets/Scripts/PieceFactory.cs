@@ -12,6 +12,11 @@ public class PieceFactory : MonoBehaviour
 	private static List<GameObject> pieceList_top = new List<GameObject>();
 	private static List<GameObject> pieceList_bottom = new List<GameObject>();
 	private static List<int> colorList = new List<int> ();
+	private static List<int> color_left = new List<int>();
+	private static List<int> color_right = new List<int>();
+	private static List<int> color_top = new List<int>();
+	private static List<int> color_bottom = new List<int>();
+	private static List<int> color_back = new List<int>();
 	public Color color_1 = new Color(0.1176f, 0.1843f, 0.1215f);
 	public Color color_2 = new Color(0.8627f, 0.2039f, 0.2823f);
 	public Color color_3 = new Color(0.8509f, 0.6039f, 0.3019f);
@@ -96,17 +101,22 @@ public class PieceFactory : MonoBehaviour
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				paint(pieceList, colorList, i, j);
-				paint(pieceList_top, colorList, i, j);
-				paint(pieceList_bottom, colorList, i, j);
-				paint(pieceList_back, colorList, i, j);
-				paint(pieceList_left, colorList, i, j);
-				paint(pieceList_right, colorList, i, j);
+				paint(pieceList_top, color_top, i, j);
+				paint(pieceList_bottom, color_bottom, i, j);
+				paint(pieceList_back, color_back, i, j);
+				paint(pieceList_left, color_left, i, j);
+				paint(pieceList_right, color_right, i, j);
 			}
 		}
 	}
-    public void LoadSrc(int s, List<int> color)
+	public void LoadSrc(int s, List<int> color, List<int> left, List<int> right, List<int> top, List<int> bottom, List<int> back)
     {
 		colorList = color;
+		color_back = back;
+		color_left = left;
+		color_right = right;
+		color_top = top;
+		color_bottom = bottom;
         size = s;
         float start = (float)size / -2.0f;
 		Vector3 Cube_pos = new Vector3(start + 1.0f * Mathf.Ceil(size/2), start + 1.0f * Mathf.Ceil(size/2), Mathf.Ceil(size/2));
@@ -127,7 +137,7 @@ public class PieceFactory : MonoBehaviour
 			{
 				Vector3 pos = new Vector3(start + 1.0f * j, start + 1.0f * i, 1.0f*s);
 				pieceList_back.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.identity) as GameObject);
-				paint (pieceList_back, color, i, j);
+				paint (pieceList_back, color_back, i, j);
 			}
 		}
 
@@ -138,7 +148,7 @@ public class PieceFactory : MonoBehaviour
 			{
 				Vector3 pos = new Vector3(start - 0.5f, start + 1.0f * i, start + 1.0f * j + 0.5f*(s+1));
 				pieceList_right.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(0, 90, 0)) as GameObject);
-				paint (pieceList_right, color, i, j);
+				paint (pieceList_right, color_left, i, j);
 			}
 		}
 		//rightside
@@ -148,7 +158,7 @@ public class PieceFactory : MonoBehaviour
 			{
 				Vector3 pos = new Vector3(start - 0.5f + 1.0f*s, start + 1.0f * i, start + 1.0f * j + 0.5f*(s+1));
 				pieceList_left.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(0, 90, 0)) as GameObject);
-				paint (pieceList_left, color, i, j);
+				paint (pieceList_left, color_right, i, j);
 			}
 		}
 		//bottom
@@ -158,7 +168,7 @@ public class PieceFactory : MonoBehaviour
 			{
 				Vector3 pos = new Vector3(start + 1.0f * j, start - 0.5f, 1.0f*i + 0.5f);
 				pieceList_bottom.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(90, 0, 0)) as GameObject);
-				paint (pieceList_bottom, color, i, j);
+				paint (pieceList_bottom, color_bottom, i, j);
 			}
 		}
 		//top
@@ -168,7 +178,7 @@ public class PieceFactory : MonoBehaviour
 			{
 				Vector3 pos = new Vector3(start + 1.0f * j, start - 0.5f + 1.0f*s, 1.0f*i + 0.5f);
 				pieceList_top.Add(Instantiate(Resources.Load("Prefabs/Piece"), pos, Quaternion.Euler(90, 0, 0)) as GameObject);
-				paint (pieceList_top, color, i, j);
+				paint (pieceList_top, color_top, i, j);
 			}
 		}
 		//将cube设为piecelist的父对象实现旋转
