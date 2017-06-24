@@ -15,7 +15,7 @@ public class audio : MonoBehaviour {
 	void OnGUI() {
  
 		//播放音乐按钮
-		if (GUI.Button(new Rect(10, 10, 100, 30), "Play music"))  {
+		if (GUI.Button(new Rect(40, Screen.height - 80, 100, 30), "Play music"))  {
  
 			//没有播放中
 			if (!music.isPlaying){
@@ -26,7 +26,7 @@ public class audio : MonoBehaviour {
 		}
  
 		//关闭音乐按钮
-		if (GUI.Button(new Rect(120, 10, 100, 30), "Stop music"))  {
+		if (GUI.Button(new Rect(150, Screen.height - 80, 100, 30), "Stop music"))  {
  
 			if (music.isPlaying){
 				//关闭音乐
@@ -34,7 +34,7 @@ public class audio : MonoBehaviour {
 			}
 		}
 		//暂停音乐
-		if (GUI.Button(new Rect(10, 50, 100, 30), "Pause music"))  {
+		if (GUI.Button(new Rect(40, Screen.height - 40, 100, 30), "Pause music"))  {
 			if (music.isPlaying){
 				//暂停音乐
 				//这里说一下音乐暂停以后
@@ -51,10 +51,10 @@ public class audio : MonoBehaviour {
 		//第二个参数 初始滑块位置
 		//第三个参数 起点
 		//第四个参数 终点
-		musicVolume = GUI.HorizontalSlider (new Rect(120, 55, 100, 50), musicVolume, 0.0F, 1.0F);
+		musicVolume = GUI.HorizontalSlider (new Rect(150, Screen.height - 40, 100, 50), musicVolume, 0.0F, 1.0F);
  
 		//将音量的百分比打印出来
-		GUI.Label(new Rect(120, 65, 300, 20), "Music Volueme is " + (int)(musicVolume * 100) + "%");
+		GUI.Label(new Rect(150, Screen.height - 30, 300, 20), "Music Volueme is " + (int)(musicVolume * 100) + "%");
  
 		if (music.isPlaying){
 			//音乐播放中设置音乐音量 取值范围 0.0F到 1.0

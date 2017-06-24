@@ -15,6 +15,7 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 
 	public Text maintext; //中间显示
 	public Text steptext; //显示次数
+	public Text maxsteptext; //最大次数
 	public Texture buttonTexture_Reset;
 
 	void Awake()
@@ -33,7 +34,7 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 			Vector3 pos = Input.mousePosition;
 			selectPiece(pos);
 		}
-		steptext.text = "Step : " + used_step.ToString() + "/" + max_step.ToString();
+		steptext.text = "Step : " + used_step.ToString();
 	}
 
 	public void LoadResources()
