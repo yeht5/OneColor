@@ -1,0 +1,90 @@
+Mono path[0] = 'F:/Users/Samson/Desktop/OneColor_Data/Managed'
+Mono path[1] = 'F:/Users/Samson/Desktop/OneColor_Data/Mono'
+Mono config path = 'F:/Users/Samson/Desktop/OneColor_Data/Mono/etc'
+PlayerConnection initialized from F:/Users/Samson/Desktop/OneColor_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55410
+Multi-casting "[IP] 172.18.68.32 [Port] 55410 [Flags] 3 [Guid] 1420355231 [EditorId] 3388474886 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-NH2SOV2) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [0.0.0.0:55410]...
+Timed out. Continuing without host connection.
+Started listening to [0.0.0.0:55410]
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56231
+PlayerConnection already initialized - listening to [0.0.0.0:55410]
+Initialize engine version: 5.5.2f1 (3829d7f588f3)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 960M (ID=0x139b)
+    Vendor:   NVIDIA
+    VRAM:     2018 MB
+    Driver:   10.18.15.4268
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\Users\Samson\Desktop\OneColor_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\Users\Samson\Desktop\OneColor_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading F:\Users\Samson\Desktop\OneColor_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.023 seconds
+Platform assembly: F:\Users\Samson\Desktop\OneColor_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\Users\Samson\Desktop\OneColor_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.165318 ms
+The referenced script on this Behaviour (Game Object 'Cube') is missing!
+UnityEngine.Resources:Load(String, Type)
+UnityEngine.Resources:Load(String) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\ResourcesBindings.gen.cs:52)
+PieceFactory:LoadSrc(Int32, List`1, List`1, List`1, List`1, List`1, List`1) (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\PieceFactory.cs:123)
+SceneController:stageLevel(String) (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\SceneController.cs:117)
+<LoadLevel>c__Iterator0:MoveNext() (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\FileManager.cs:30)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+
+[C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp line 1754] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/ResourcesBindings.gen.cs Line: 52)
+
+The referenced script on this Behaviour (Game Object '<null>') is missing!
+UnityEngine.Object:INTERNAL_CALL_Internal_InstantiateSingle(Object, Vector3&, Quaternion&)
+UnityEngine.Object:Internal_InstantiateSingle(Object, Vector3, Quaternion) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineObjectBindings.gen.cs:51)
+UnityEngine.Object:Instantiate(Object, Vector3, Quaternion) (at C:\buildslave\unity\build\Runtime\Export\UnityEngineObject.cs:157)
+PieceFactory:LoadSrc(Int32, List`1, List`1, List`1, List`1, List`1, List`1) (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\PieceFactory.cs:123)
+SceneController:stageLevel(String) (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\SceneController.cs:117)
+<LoadLevel>c__Iterator0:MoveNext() (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\FileManager.cs:30)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+
+[C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp line 1754] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineObjectBindings.gen.cs Line: 51)
+
+The referenced script on this Behaviour (Game Object 'Cube') is missing!
+UnityEngine.Object:INTERNAL_CALL_Internal_InstantiateSingle(Object, Vector3&, Quaternion&)
+UnityEngine.Object:Internal_InstantiateSingle(Object, Vector3, Quaternion) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineObjectBindings.gen.cs:51)
+UnityEngine.Object:Instantiate(Object, Vector3, Quaternion) (at C:\buildslave\unity\build\Runtime\Export\UnityEngineObject.cs:157)
+PieceFactory:LoadSrc(Int32, List`1, List`1, List`1, List`1, List`1, List`1) (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\PieceFactory.cs:123)
+SceneController:stageLevel(String) (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\SceneController.cs:117)
+<LoadLevel>c__Iterator0:MoveNext() (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\FileManager.cs:30)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+
+[C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp line 1754] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineObjectBindings.gen.cs Line: 51)
+
+The referenced script on this Behaviour (Game Object 'Cube') is missing!
+UnityEngine.Object:INTERNAL_CALL_Internal_InstantiateSingle(Object, Vector3&, Quaternion&)
+UnityEngine.Object:Internal_InstantiateSingle(Object, Vector3, Quaternion) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineObjectBindings.gen.cs:51)
+UnityEngine.Object:Instantiate(Object, Vector3, Quaternion) (at C:\buildslave\unity\build\Runtime\Export\UnityEngineObject.cs:157)
+PieceFactory:LoadSrc(Int32, List`1, List`1, List`1, List`1, List`1, List`1) (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\PieceFactory.cs:123)
+SceneController:stageLevel(String) (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\SceneController.cs:117)
+<LoadLevel>c__Iterator0:MoveNext() (at F:\Users\Samson\Desktop\oneColor\Assets\Scripts\FileManager.cs:30)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+
+[C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp line 1754] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineObjectBindings.gen.cs Line: 51)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 149c -> priority: 1 
+  Thread -> id: 1290 -> priority: 1 
