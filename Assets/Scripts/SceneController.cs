@@ -15,6 +15,8 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 
 	public Text maintext; //中间显示
 	public Text steptext; //显示次数
+	public Texture buttonTexture_Reset;
+
 	void Awake()
 	{
 		Director director = Director.getInstance();
@@ -42,7 +44,7 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 	}
 
 	void OnGUI() {
-		if (GUI.Button(new Rect(440, Screen.height - 60, 80, 40), "Reset"))
+		if (GUI.Button(new Rect(Screen.width - 200, Screen.height - 60, 70, 40), "Reset"))
 		{
 			Debug.Log ("reset");
 			PieceFactory pf = Singleton<PieceFactory>.Instance;

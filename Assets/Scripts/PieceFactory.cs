@@ -74,7 +74,7 @@ public class PieceFactory : MonoBehaviour
 	//利用协程实现延时变色
 	private IEnumerator delay(List<GameObject> new_list, int id, Color old_color, Color new_color)
 	{
-		yield return new WaitForSeconds(0.8f/(2*(count+1)));
+		yield return new WaitForSeconds(0.7f/(1.8f*(count+12)));
 		GetSameColorPiece(new_list, id, old_color, new_color);
 	}
 

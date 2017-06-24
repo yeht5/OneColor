@@ -10,31 +10,35 @@ public class UserGUI : MonoBehaviour {
 	public Color color_3 = new Color(0.8509f, 0.6039f, 0.3019f);
 	public Color color_4 = new Color(0.8196f, 0.6941f, 0.5333f);
     public Text colortext;//显示所选颜色
+    public Texture buttonTexture_Red;
+    public Texture buttonTexture_Green;
+    public Texture buttonTexture_White;
+    public Texture buttonTexture_Yellow;
 
 	void Start () {
         action = Director.getInstance().currentSceneControl as IUserAction;
 	}
     void OnGUI()
     {
-        if (GUI.Button(new Rect(40, Screen.height - 60, 80, 40), "Green"))
+        if (GUI.Button(new Rect(50, Screen.height - 60, 40, 40), buttonTexture_Green))
         {
             action.selectColor(color_1);
             colortext.text = "Color : Green";
         }
-        if (GUI.Button(new Rect(140, Screen.height - 60, 80, 40), "Red"))
+        if (GUI.Button(new Rect(125, Screen.height - 60, 40, 40), buttonTexture_Red))
         {
 			action.selectColor(color_2);
             colortext.text = "Color : Red";
         }
-        if (GUI.Button(new Rect(240, Screen.height - 60, 80, 40), "Yellow"))
+        if (GUI.Button(new Rect(200, Screen.height - 60, 40, 40), buttonTexture_Yellow))
         {
 			action.selectColor(color_3);
             colortext.text = "Color : Yellow";
         }
-        if (GUI.Button(new Rect(340, Screen.height - 60, 80, 40), "White"))
+        if (GUI.Button(new Rect(275, Screen.height - 60, 40, 40), buttonTexture_White))
         {
 			action.selectColor(color_4);
             colortext.text = "Color : White";
-		}
+        }
     }
 }
