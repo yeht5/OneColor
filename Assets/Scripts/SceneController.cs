@@ -50,6 +50,7 @@ public class SceneController : MonoBehaviour, ISceneControl, IUserAction
 			PieceFactory pf = Singleton<PieceFactory>.Instance;
 			pf.reset();
 			used_step = 0;
+			maintext.text = "";
 		}
 	}
 	//选择改变颜色的片
